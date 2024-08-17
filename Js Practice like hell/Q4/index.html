@@ -1,0 +1,62 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul></ul>
+    <input type="text"/>
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <script src="script.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-remove List</title>
+    <style>
+        .selected {
+            background-color: #f8d7da;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Add an item">
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <ul id="list"></ul>
+
+    <script>
+        var add = document.querySelector('#add');
+        var remove = document.querySelector('#remove');
+        var inp = document.querySelector("#input");
+        var ul = document.querySelector('#list');
+
+        add.addEventListener("click", function () {
+            if (inp.value.trim() !== '') {
+                var li = document.createElement('li');
+                li.textContent = inp.value;
+                li.addEventListener('click', function () {
+                    // Toggle the 'selected' class on click
+                    li.classList.toggle('selected');
+                });
+                ul.appendChild(li);
+                inp.value = "";
+            }
+        });
+
+        remove.addEventListener("click", function () {
+            // Select all items with the 'selected' class and remove them
+            var selectedItems = document.querySelectorAll('.selected');
+            selectedItems.forEach(function (item) {
+                ul.removeChild(item);
+            });
+        });
+    </script>
+</body>
+</html>
